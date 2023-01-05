@@ -3,6 +3,30 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 export default function Registra() {
+
+  //  const [values, setValues] = useState < any > [];
+  //  const Select = (params) => {
+  //    setValues([...values, { Permiso: params.target.value }]);
+  //  };
+  //  console.log(values);
+
+   const handleOnSubmit = (params) => {
+     const datas = JSON.parse(localStorage.getItem("user") || "[]");
+     params.preventDefault();
+     let data = [
+       ...datas,
+       {
+         name: params.target.name.value,
+         LastName: params.target.LastName.value,
+         email: params.target.email.value,
+         password: params.target.password.value,
+       },
+     ];
+     console.log(datas);
+     localStorage.setItem("user", JSON.stringify(data));
+   };
+
+  //  const { name } = useParams();
   return (
     <>
       <Box
@@ -19,21 +43,44 @@ export default function Registra() {
 
           <CardBody>
             <Box>
-              <form>
-                <Input margin={"3px"} placeholder="Nombre"></Input>
-                <Input margin={"3px"} placeholder="Apellido"></Input>
-                <Input margin={"3px"} placeholder="Correo"></Input>
-                <Input margin={"3px"} placeholder="Contraseña"></Input>
-                <Link to="/CrearNew">
+              <form onSubmit={handleOnSubmit}>
+                <Input
+                  name="name"
+                  margin={"3px"}
+                  placeholder="Nombre"
+                  id="name"
+                ></Input>
+                <Input
+                  name="LastName"
+                  margin={"3px"}
+                  placeholder="Apellido"
+                  id="LastName"
+                ></Input>
+                <Input
+                  name="email"
+                  margin={"3px"}
+                  placeholder="Correo"
+                  id="email"
+                ></Input>
+                <Input
+                  name="password"
+                  margin={"3px"}
+                  placeholder="Contraseña"
+                  id="password"
+                ></Input>
+                {/* <Link to="/CrearNew"> */}
                   <Button
                     display="flex"
                     justifyContent={"center"}
                     alignContent="center"
                     textAlign="center"
+                    name="Crear"
+                    type="submit"
+                    onSubmit={Registra}
                   >
                     Crear Cuenta
                   </Button>
-                </Link>
+                {/* </Link> */}
               </form>
             </Box>
           </CardBody>

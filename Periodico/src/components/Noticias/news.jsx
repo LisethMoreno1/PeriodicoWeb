@@ -11,7 +11,7 @@ export default function News() {
         templateAreas={`"header header "
                   "nav main "
                   "nav footer "`}
-        gridTemplateRows={"1% 1fr auto "}
+        gridTemplateRows={"50% 1fr auto "}
         gridTemplateColumns={"350px 3fr"}
         h="200px"
         gap="1"
@@ -19,6 +19,9 @@ export default function News() {
         fontWeight="bold"
         margin={"3px"}
       >
+        <GridItem pl="2" bg="gray.100" area={"header"}>
+        nav
+        </GridItem>
         <GridItem pl="2" bg="gray.100" area={"nav"}>
           <Notas />
         </GridItem>
